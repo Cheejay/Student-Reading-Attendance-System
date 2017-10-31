@@ -1,0 +1,22 @@
+<html>
+<head>
+ <title>上传文件</title>
+ <meta charset="UTF-8">
+ <link rel="stylesheet" href="__STATIC__/install/simpleboot/themes/flat/theme.min.css" />
+</head>
+<body>
+<hr>
+<form method="post" action="upload" enctype="multipart/form-data">
+  <h3>导入Excel表：</h3>
+  <input  type="file" name="file-data" />
+  <input type="submit"  class="btn btn-success"  value="导入" />
+</form>
+<hr/>
+<h3>导出Excel表：</h3>
+ <a class="btn btn-success" href="__ROOT__/excel/index/export">导出用户</a>
+ <hr/>
+ <h3>核弹面板：</h3>
+  <a class="btn btn-success" href="__ROOT__/user/admin_index/clean">删除所有用户</a>
+  <a class="btn btn-success" href="__ROOT__/excel/index/export">禁用所有毕业生</a>
+</body>
+</html>
