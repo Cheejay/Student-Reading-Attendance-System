@@ -15,18 +15,13 @@ class BookController extends AdminBaseController
     {
         if (''==(input('name'))||''==(input('isbn'))||''==(input('category')))
         {
-            $this->error("有数据未填写","AddBook");
+            $this->error("有数据未填写");
         }
         else
         {
             db('book')->insert(['name'=>input('name'),'isbn'=>input('isbn'),'category'=>input('category')]);
-            $this->success("添加成功","AddBook");
+            $this->success("添加成功");
         }
-    }
-
-    public function EditBook($bookinfo)
-    {
-
     }
 
     public function EditBookPost()
@@ -77,5 +72,10 @@ class BookController extends AdminBaseController
       else {
         return (db('book')->where('name',input('name'))->find())['id'];
       }
+    }
+    
+    public function BookList()
+    {
+        //TODO
     }
 }
