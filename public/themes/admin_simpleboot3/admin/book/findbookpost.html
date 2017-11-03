@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="{:url('book/EditBookPost')}" method="post">
+    <input type="hidden" name="id" placeholder="id" value="{$info.id}">
+    <input type="text" name="name" placeholder="BookName" value="{$info.name}"><br>
+    <input type="text" name="isbn" placeholder="Bookisbn" value="{$info.isbn}"><br>
+    <input type="text" name="category" placeholder="category" value="{$info.category}"><br>
+    <input type="submit" name="ok" value="edit">
+    <input type="submit" name="ok" value="del">
+  </form>
+</body>
+</html>
