@@ -13,67 +13,65 @@ class BookController extends AdminBaseController
 
     public function AddBookPost()
     {
-        if (''==(input('name'))||''==(input('isbn'))||''==(input('category')))
+        if (''==(input('post.name'))||''==(input('post.isbn'))||''==(input('post.category')))
         {
-            $this->error("有数据未填写");
+            return ['code'=>1001,'msg'=>"有数据未填写"];
         }
         else
         {
-            db('book')->insert(['name'=>input('name'),'isbn'=>input('isbn'),'category'=>input('category')]);
-            $this->success("添加成功");
+            db('book')->insert(['name'=>input('post.name'),'isbn'=>input('post.isbn'),'category'=>input('post.category')]);
+            return ['code'=>1000,'msg'=>"写入完成"];
         }
     }
 
     public function EditBookPost()
     {
-       if (''== input('id') || (''==(input('name'))||''==(input('isbn'))||''==(input('category'))))
+       if (''== input('post.id') || (''==(input('post.name'))||''==(input('post.isbn'))||''==(input('post.category')||''==(input('post.post.type')))))
        {
-         $this->error("有数据未填写!");
+         return ['code'=>1001,'msg'=>"有数据未填写"];
        }
        else
        {
-         if ('ok' == 'edit')
+         if (input('post.post.type') == 'edit')
          {
-         db('book')->update(['id' => input('id'),'name'=>input('name'),'isbn'=>input('isbn'),'category'=>input('category')]);
-         $this->success("修改成功!");
+         db('book')->update(['id' => input('post.id'),'name'=>input('post.name'),'isbn'=>input('post.isbn'),'category'=>input('post.category')]);
+         return ['code'=>1002,'msg'=>"修改成功"];
         }
-        elseif ('ok' == 'del') {
-          db('book')->where('id',input('id'))->delete();
-          $this->success("删除成功!");
+        elseif (input('post.post.type') == 'del') {
+          db('book')->where('id',input('post.id'))->delete();
+          return ['code'=>1003,'msg'=>"修改成功"];
         }
        }
-    }
-
-    public function FindBook()
-    {
-      return $this->fetch();
     }
 
     public function FindBookPost()
     {
-      if ('' == input('id'))
+      if ('' == input('post.id'))
       {
-        $this->error('Id不能为空');
+        return ['code'=>1001,'msg'=>"有数据未填写"];
       }
       else
       {
-        $info = db('book')->where('id',input('id'))->find();
-        $this->assign('info',$info);
-        return $this->fetch();
+        return db('book')->where('id',input('post.id'))->find();
       }
     }
 
     public function GetBookId()
     {
-      if ('' == input('name'))
+      if ('' == input('post.name'))
       {
-        $this->error("Name不能为空");
+        return ['code'=>1001,'msg'=>"有数据未填写"];
       }
       else {
-        return (db('book')->where('name',input('name'))->find())['id'];
+        return (db('book')->where('name',input('post.name'))->find())['id'];
       }
     }
     
+    public function test()
+    {
+        return ['code'=>1000,'msg'=>"Hello!"];
+    }
+
     public function BookList()
     {
         //TODO
