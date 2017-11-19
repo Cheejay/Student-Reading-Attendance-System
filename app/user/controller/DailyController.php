@@ -15,7 +15,7 @@ class DailyController extends UserBaseController
 		{
 			$info = db('user')->where('id',input('id'))->find();
 			db('daily')->insert(['userid'=>input('id'),'username'=>$info['user_login'],'date'=>'NOW()']);
-			$this->success('签到成功!');
+			return ['code'=>'1001','msg'=>'签到成功'];
 		}
 	}
 }

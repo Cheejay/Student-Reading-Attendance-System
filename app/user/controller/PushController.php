@@ -11,4 +11,8 @@ class PushController extends HomeBaseController
 		$sql = db('push')->query('SELECT * FROM T_USER  ORDER BY  RAND() LIMIT 1');
 		return json_encode($sql);
 	}
+	public function test()
+    {
+        return json(['code'=>1000,'msg'=>"Hello!"]);
+    }
 }
