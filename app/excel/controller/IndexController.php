@@ -1,7 +1,7 @@
 <?php
 namespace app\excel\controller;
 
-use think\controller;
+use think\Controller;
 use think\db;
 use PHPExcel;
 use PHPExcel_IOFactory;
