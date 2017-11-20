@@ -7,6 +7,7 @@
 // | Author: 老猫 <zxxjjforever@163.com>
 // +----------------------------------------------------------------------
 header("Access-Control-Allow-Origin: http://www.xiaoyaoji.cn");
+header("Access-Control-Allow-Credentials: true");
 // [ 入口文件 ]
 
 // 调试模式开关

@@ -7,15 +7,18 @@ class DailyController extends UserBaseController
 {
 	public function checkin()
 	{
-		if (''==input('id'))
+		if ((''==input('post.userid'))||(''==input('post.bookid'))||(''==input('post.signday'))||(''==input('post.startpage'))||(''==input('post.endpage'))||(''==input('post.notes')))
 		{
-			$this->error('id不能为空!');
+			return json(['code'=>1001,'msg'=>"有信息未填写!"]);
 		}
 		else
 		{
-			$info = db('user')->where('id',input('id'))->find();
-			db('daily')->insert(['userid'=>input('id'),'username'=>$info['user_login'],'date'=>'NOW()']);
+			db('daily')->insert(['userid'=>input('post.userid'),'bookid'=>input('post.bookid'),'signtime'=>'NOW()','signday'=>input('post.day'),'startpage'=>input('post.startpage'),'endpage'=>input('post.endpage'),'notes'=>input('post.notes')]);
 			return ['code'=>'1001','msg'=>'签到成功'];
 		}
+	}
+	public function find()
+	{
+		return db('daily')->where('user',input('post.userid'))->find();
 	}
 }

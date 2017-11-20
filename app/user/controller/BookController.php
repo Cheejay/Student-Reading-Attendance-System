@@ -1,10 +1,10 @@
 <?php
 
-namespace app\admin\controller;
+namespace app\user\controller;
 
-use cmf\controller\AdminBaseController;
+use cmf\controller\UserBaseController;
 
-class BookController extends AdminBaseController
+class BookController extends UserBaseController
 {
     public function AddBook()
     {
@@ -13,20 +13,20 @@ class BookController extends AdminBaseController
 
     public function AddBookPost()
     {
-        if (''==(input('post.name'))||''==(input('post.isbn'))||''==(input('post.category')))
+        if (''==(input('post.name'))||''==(input('post.studentid'))||''==(input('post.author')||''==(input('post.press')||''==(input('post.bookpage')))
         {
             return json(['code'=>1001,'msg'=>"有数据未填写"]);
         }
         else
         {
-            db('book')->insert(['name'=>input('post.name'),'isbn'=>input('post.isbn'),'category'=>input('post.category')]);
+            db('book')->insert(['bookname'=>input('post.name'),'studentid'=>input('post.studentid'),'author'=>input('post.author'),'press'=>input('post.press'),'bookpage'=>input('post.bookpage'),'createtime'=>'now()']);
             return json(['code'=>1000,'msg'=>"写入完成"]);
         }
     }
 
     public function EditBookPost()
     {
-       if (''== input('post.id') || (''==(input('post.name'))||''==(input('post.isbn'))||''==(input('post.category')||''==(input('post.post.type')))))
+       if (''==(input('post.id'))||''==(input('post.name'))||''==(input('post.studentid'))||''==(input('post.author')||''==(input('post.press')||''==(input('post.bookpage')))
        {
          return json['code'=>1001,'msg'=>"有数据未填写"]);
        }
@@ -34,7 +34,7 @@ class BookController extends AdminBaseController
        {
          if (input('post.post.type') == 'edit')
          {
-         db('book')->update(['id' => input('post.id'),'name'=>input('post.name'),'isbn'=>input('post.isbn'),'category'=>input('post.category')]);
+         db('book')->update(['bookname'=>input('post.name'),'studentid'=>input('post.studentid'),'author'=>input('post.author'),'press'=>input('post.press'),'bookpage'=>input('post.bookpage')]);
          return json(['code'=>1002,'msg'=>"修改成功"]);
         }
         elseif (input('post.post.type') == 'del') {
@@ -66,14 +66,10 @@ class BookController extends AdminBaseController
         return json((db('book')->where('name',input('post.name'))->find())['id']);
       }
     }
-    
-    public function test()
-    {
-        return json(['code'=>1000,'msg'=>"Hello!"]);
-    }
 
     public function BookList()
     {
         //TODO
+      
     }
 }
