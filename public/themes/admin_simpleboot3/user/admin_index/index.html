@@ -19,14 +19,14 @@
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>{:lang('USERNAME')}</th>
-                <th>{:lang('NICENAME')}</th>
-                <th>{:lang('AVATAR')}</th>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>照片</th>
+                <th>性别</th>
                 <th>{:lang('EMAIL')}</th>
                 <th>手机</th>
-                <th>{:lang('REGISTRATION_TIME')}</th>
-                <th>{:lang('LAST_LOGIN_TIME')}</th>
+                <th>校区</th>
+                <th>班级</th>
                 <th>{:lang('LAST_LOGIN_IP')}</th>
                 <th>{:lang('STATUS')}</th>
                 <th>{:lang('ACTIONS')}</th>
@@ -38,18 +38,20 @@
             </php>
             <foreach name="list" item="vo">
                 <tr>
-                    <td>{$vo.id}</td>
+                
                     <td>{$vo['user_login']?$vo['user_login']:($vo['mobile']?$vo['mobile']:lang('THIRD_PARTY_USER'))}
                     </td>
                     <td>{$vo['user_nickname']?$vo['user_nickname']:lang('NOT_FILLED')}</td>
-                    <td><img width="25" height="25" src="{:url('user/public/avatar',array('id'=>$vo['id']))}"/></td>
+                    <td><img src="http://eonline.zhyz.net.cn/MemberShipSys/UploadFiles/photo/{$vo['user_login']}.jpg" alt=""></td>
+                    <td>{$vo.sex}</td>
                     <td>{$vo.user_email}</td>
                     <td>{$vo.mobile}</td>
-                    <td>{:date('Y-m-d H:i:s',$vo['create_time'])}</td>
-                    <td>{:date('Y-m-d H:i:s',$vo['last_login_time'])}</td>
+                    <td>{$vo.campus}</td>
+                    <td>{$vo.class}</td>
                     <td>{$vo.last_login_ip}</td>
                     <td>{$user_statuses[$vo['user_status']]}</td>
                     <td>
+                        <a href="{:cmf_plugin_url('Nologin://Index/index',array('id'=>$vo['id']),true)}">进入用户</a>
                         <neq name="vo.id" value="1">
                             <empty name="vo.user_status">
                                 <a href="{:url('adminIndex/cancelban',array('id'=>$vo['id']))}"

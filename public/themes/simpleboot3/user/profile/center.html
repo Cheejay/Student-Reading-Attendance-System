@@ -32,7 +32,7 @@
 								<div class="col-md-3">
 								<a href="{:url('profile/avatar')}">
 									<if condition="empty($avatar)"> 
-										<img src="__TMPL__/public/assets/images/headicon_128.png" class="headicon" width="128" />
+										<img src="http://eonline.zhyz.net.cn/MemberShipSys/UploadFiles/photo/{$student_number}.jpg" headicon" width="128" />
 									<else />
 										<img src="__ROOT__/upload/{$avatar}" class="headicon" width="128"/>
 									</if>
@@ -40,13 +40,13 @@
 							</div>
 							<div class="col-md-9">
 								<div class="form-group">
-									<label class="control-label" for="input-user_nicename">昵称</label>
+									<label class="control-label" for="input-user_nicename">姓名</label>
 									<div>{$user_nickname|default='未填写'}</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label" for="input-sex">性别</label>
 									<div>
-										<php> $sexs=array("0"=>"保密","1"=>"程序猿","2"=>"程序媛");echo $sexs[$sex]; </php>
+										<php>echo $sex; </php>
 									</div>
 								</div>
 								<div class="form-group">
@@ -55,7 +55,7 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label" for="input-user_url">班级</label>
-									<div>{$class|default='未填写'}</div>
+									<div>{$campus|default='未知校区'}{$class|default='未填写'}</div>
 								</div>
 								<div class="form-group">
 									<label class="control-label" for="input-signature">学号</label>
