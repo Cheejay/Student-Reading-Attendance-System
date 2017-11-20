@@ -13,7 +13,7 @@ class BookController extends UserBaseController
 
     public function AddBookPost()
     {
-        if (''==(input('post.name'))||''==(input('post.studentid'))||''==(input('post.author')||''==(input('post.press')||''==(input('post.bookpage')))
+        if ((''==input('post.name'))||(''==input('post.studentid'))||(''==input('post.author'))||(''==input('post.press'))||(''==input('post.bookpage')))
         {
             return json(['code'=>1001,'msg'=>"有数据未填写"]);
         }
@@ -26,35 +26,37 @@ class BookController extends UserBaseController
 
     public function EditBookPost()
     {
-       if (''==(input('post.id'))||''==(input('post.name'))||''==(input('post.studentid'))||''==(input('post.author')||''==(input('post.press')||''==(input('post.bookpage')))
-       {
+       if ((''==input('post.name'))||(''==input('post.studentid'))||(''==input('post.author'))||(''==input('post.press'))||(''==input('post.bookpage'))||(''==input('post.type')))
+        {
          return json['code'=>1001,'msg'=>"有数据未填写"]);
-       }
+        }
        else
-       {
-         if (input('post.post.type') == 'edit')
-         {
+        {
          db('book')->update(['bookname'=>input('post.name'),'studentid'=>input('post.studentid'),'author'=>input('post.author'),'press'=>input('post.press'),'bookpage'=>input('post.bookpage')]);
          return json(['code'=>1002,'msg'=>"修改成功"]);
         }
-        elseif (input('post.post.type') == 'del') {
-          db('book')->where('id',input('post.id'))->delete();
-          return json(['code'=>1003,'msg'=>"删除成功"]);
-        }
-       }
     }
 
-    public function FindBookPost()
+    public function DelBookPost()
     {
-      if ('' == input('post.id'))
-      {
-        return ['code'=>1001,'msg'=>"有数据未填写"];
-      }
-      else
-      {
-        return json(db('book')->where('id',input('post.id'))->find());
-      }
+      db('book')->where('id',input('post.id'))->delete();
+      return json(['code'=>1003,'msg'=>"删除成功"]);
     }
+
+    /*
+    * 废弃的功能
+    */
+    // public function FindBookPost()
+    // {
+    //   if ('' == input('post.id'))
+    //   {
+    //     return ['code'=>1001,'msg'=>"有数据未填写"];
+    //   }
+    //   else
+    //   {
+    //     return json(db('book')->where('id',input('post.id'))->find());
+    //   }
+    // }
 
     public function GetBookId()
     {
@@ -63,10 +65,14 @@ class BookController extends UserBaseController
         return json(['code'=>1001,'msg'=>"有数据未填写"]);
       }
       else {
-        return json((db('book')->where('name',input('post.name'))->find())['id']);
+        return json(['code'=>1004,'id'=>(db('book')->where('name',input('post.name'))->find())['id']]);
       }
     }
 
+
+    /*
+      Top10
+    */
     public function BookList()
     {
         //TODO
