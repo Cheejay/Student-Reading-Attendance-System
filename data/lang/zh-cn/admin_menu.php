@@ -119,6 +119,7 @@ return array (
   'ADMIN_USER_INDEX' => '管理员',
   'ADMIN_USER_USERINFO' => '个人信息',
   'ADMIN_USER_USERINFOPOST' => '管理员个人信息修改提交',
+  'BOOK_INDEX_INDEX' => 'Book',
   'EXCEL_INDEX_INDEX' => 'EXCEL导入导出',
   'PORTAL_ADMINARTICLE_ADD' => '添加文章',
   'PORTAL_ADMINARTICLE_ADDPOST' => '添加文章提交',
